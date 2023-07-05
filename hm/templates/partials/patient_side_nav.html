@@ -1,0 +1,165 @@
+{% load static %}
+
+<div class="col-12">
+    <div class="sidenav rounded-lg col-12 py-3">
+        <div
+            class="col-12 d-flex align-items-center position-relative h-100 justify-content-between justify-content-lg-center">
+            <!-- <div class="d-flex align-items-center px-3 px-lg-0">
+            </div> -->
+            <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"><i class="fa-solid fa-bars fs-5 me-2 ms-3"></i></button>
+            <a href="{% url 'home' %}" class="position-absolute top-0 px-0 px-lg-3"><img
+                    src="{% static 'images/hms_logo.png' %}" alt="" class="img-fluid col-12"></a>
+
+            <div class="col text-center d-none d-lg-block justify-content-center">
+                <a href="#dashboard" class="btn py-3 text-decoration-none text-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Zm2-10h4V5H5Zm10 8h4v-6h-4Zm0-12h4V5h-4ZM5 19h4v-2H5Zm4-8Zm6-4Zm0 6Zm-6 4Z" />
+                    </svg>
+                    <small><small>Dashboard</small></small>
+                </a>
+                <a href="#bookings" class="btn py-3 text-decoration-none text-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M14.5 18q-1.05 0-1.775-.725Q12 16.55 12 15.5q0-1.05.725-1.775Q13.45 13 14.5 13q1.05 0 1.775.725Q17 14.45 17 15.5q0 1.05-.725 1.775Q15.55 18 14.5 18ZM5 22q-.825 0-1.413-.587Q3 20.825 3 20V6q0-.825.587-1.412Q4.175 4 5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588Q21 5.175 21 6v14q0 .825-.587 1.413Q19.825 22 19 22Zm0-2h14V10H5v10ZM5 8h14V6H5Zm0 0V6v2Z" />
+                    </svg>
+                    <small><small><small>Appointments</small></small></small>
+                </a>
+                <a href="#explore" class="btn py-3 text-decoration-none text-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M6.5 17.5 14 14l3.5-7.5L10 10ZM12 13q-.425 0-.712-.288Q11 12.425 11 12t.288-.713Q11.575 11 12 11t.713.287Q13 11.575 13 12t-.287.712Q12.425 13 12 13Zm0 9q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z" />
+                    </svg>
+                    <small><small>Explore</small></small>
+                </a>
+                <a href="#" class="btn py-3 text-decoration-none text-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M3 21v-2l2-6-2-6V5h12.7l1.45-4 2.35.85L18.35 5H21v2l-2 6 2 6v2Zm8-4h2v-3h3v-2h-3V9h-2v3H8v2h3Zm-5.9 2h13.8l-2-6 2-6H5.1l2 6Zm6.9-6Z" />
+                    </svg>
+                    <small><small>Pharmacy</small></small>
+                </a>
+            </div>
+
+            <a href="{% url 'logout' %}"
+                class="text-center text-dark position-absolute bottom-0 text-decoration-none px-3 d-none d-lg-block">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path
+                        d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h7v2H5v14h7v2Zm11-4-1.375-1.45 2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5Z" />
+                </svg>
+            </a>
+            <button class="btn px-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample2" aria-controls="offcanvasExample2">
+                <div class="mx-auto rounded-pill bg-secondary p-2 text-center user_initials_sm mb-2">
+                    <span class="fs-6 text-white"
+                        style="text-transform: uppercase;">{{request.user.username|make_list|slice:'0:2'|join:''}}</span>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <a href="#dashboard" class="btn col-12 text-start bg-light mt-3 py-3 text-decoration-none text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                    d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Zm2-10h4V5H5Zm10 8h4v-6h-4Zm0-12h4V5h-4ZM5 19h4v-2H5Zm4-8Zm6-4Zm0 6Zm-6 4Z" />
+            </svg>
+            <small><small>Dashboard</small></small>
+        </a>
+
+        <a href="#bookings" class="btn col-12 text-start bg-light mt-3 py-3 text-decoration-none text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                    d="M14.5 18q-1.05 0-1.775-.725Q12 16.55 12 15.5q0-1.05.725-1.775Q13.45 13 14.5 13q1.05 0 1.775.725Q17 14.45 17 15.5q0 1.05-.725 1.775Q15.55 18 14.5 18ZM5 22q-.825 0-1.413-.587Q3 20.825 3 20V6q0-.825.587-1.412Q4.175 4 5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588Q21 5.175 21 6v14q0 .825-.587 1.413Q19.825 22 19 22Zm0-2h14V10H5v10ZM5 8h14V6H5Zm0 0V6v2Z" />
+            </svg>
+            <small><small>Appointments</small></small>
+        </a>
+
+        <a href="#explore" class="btn col-12 text-start bg-light mt-3 py-3 text-decoration-none text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                    d="M6.5 17.5 14 14l3.5-7.5L10 10ZM12 13q-.425 0-.712-.288Q11 12.425 11 12t.288-.713Q11.575 11 12 11t.713.287Q13 11.575 13 12t-.287.712Q12.425 13 12 13Zm0 9q-2.075 0-3.9-.788-1.825-.787-3.175-2.137-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175 1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138 1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q3.35 0 5.675-2.325Q20 15.35 20 12q0-3.35-2.325-5.675Q15.35 4 12 4 8.65 4 6.325 6.325 4 8.65 4 12q0 3.35 2.325 5.675Q8.65 20 12 20Zm0-8Z" />
+            </svg>
+            <small><small>Explore</small></small>
+        </a>
+
+        <a href="#" class="btn col-12 text-start bg-light mt-3 py-3 text-decoration-none text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                    d="M3 21v-2l2-6-2-6V5h12.7l1.45-4 2.35.85L18.35 5H21v2l-2 6 2 6v2Zm8-4h2v-3h3v-2h-3V9h-2v3H8v2h3Zm-5.9 2h13.8l-2-6 2-6H5.1l2 6Zm6.9-6Z" />
+            </svg>
+            <small><small>Pharmacy</small></small>
+        </a>
+
+        <a href="{% url 'logout' %}" class="btn col-12 text-start bg-light mt-3 py-3 text-decoration-none text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                    d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h7v2H5v14h7v2Zm11-4-1.375-1.45 2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5Z" />
+            </svg>
+            <small><small>Logout</small></small>
+        </a>
+    </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample2" aria-labelledby="offcanvasExample2Label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExample2Label"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body overflow-auto">
+        <div class="col-12 text-center mb-4">
+            <div class="mx-auto rounded-pill bg-secondary p-4 text-center user_initials mb-2" id="user_initials2">
+                <span class="fs-3 text-white"
+                    style="text-transform: uppercase;">{{request.user.username|make_list|slice:'0:2'|join:''}}</span>
+            </div>
+            <span>{{request.user.username}}</span>
+        </div>
+
+        <div class="col-12 detail_holder rounded p-3">Email: {{request.user.email}}</div>
+        <div class="col-12 detail_holder rounded p-3 mt-3">Phone Number: {{request.user.phone}}</div>
+
+        <div class="row row-cols-3 g-3 mt-4">
+            <div class="col">
+                <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                    <i class="fa-solid fa-weight-scale fs-3" style="color: var(--red_shade);"></i><br>
+                    <small><small class="text-secondary">weight</small></small><br>
+                    <small>0.00kg</small>
+                </div>
+            </div>
+            <div class="col">
+                <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                    <i class="fa-solid fa-up-down fs-3" style="color: var(--blue_shade);"></i><br>
+                    <small><small class="text-secondary">height</small></small><br>
+                    <small>0'0"</small>
+                </div>
+            </div>
+            <div class="col">
+                <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                    <i class="fa-solid fa-gauge fs-3" style="color: var(--purple_shade);"></i><br>
+                    <small><small class="text-secondary">BP</small></small><br>
+                    <small>0.00</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Button -->
+        <a href="#" class="btn col-12 mt-4"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+    </div>
+</div>
+
+
+
+<script>
+    $(".user_initials_sm").width($(".user_initials_sm").height())
+</script>

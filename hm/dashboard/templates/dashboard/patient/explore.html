@@ -1,0 +1,156 @@
+{% load static %}
+
+<div class="main" id="explore">
+    <h4>Discover Different Diseases</h4>
+    <div class="row col-12 mx-0 px-0 g-3 py-3">
+        <div class="col-12 col-md-6 col-lg-5 overflow-hidden" style="max-height: 78vh;">
+            {% for ailment in ailments %}
+            <div id="ailment{{ailment.id}}" style="height: 78vh;" class="overflow-auto ailments">
+                <div class="d-flex flex-wrap col-12 justify-content-center">
+                    <div class="col-7 col-lg-5 position-relative">
+                        <img src="{% static 'images/human.png' %}" class="col-12" alt=""
+                            style="filter: grayscale(100%);">
+                        <img src="{% static 'images/brain.png' %}" width="30px" height="20px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_brain %} 
+                            style="top: 5px; filter: opacity(.5) drop-shadow(0 0 0 red);" 
+                            {% else %} 
+                            style="top: 5px; filter: brightness(90%);" 
+                            {% endif %}>
+                        <img src="{% static 'images/heart.png' %}" width="20px" height="20px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_heart %} 
+                            style="top: 20%; filter: opacity(.5) drop-shadow(0 0 0 red);" 
+                            {% else %} 
+                            style="top: 20%; filter: brightness(95%);" 
+                            {% endif %}>
+                        <img src="{% static 'images/lungs.png' %}" width="60px" height="50px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_lungs %} 
+                            style="top: 14%; filter: opacity(.5) drop-shadow(0 0 0 red);" 
+                            {% else %} 
+                            style="top: 14%; filter: brightness(90%);" 
+                            {% endif %}>
+                        <img src="{% static 'images/liver.png' %}" width="35px" height="30px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_liver %} 
+                            style="top: 25%; filter: opacity(.5) drop-shadow(0 0 0 red);" 
+                            {% else %} 
+                            style="top: 25%; filter: brightness(90%);" 
+                            {% endif %}>
+                        <img src="{% static 'images/stomach.png' %}" width="30px" height="20px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_stomach %} 
+                            style="top: 30%; filter: opacity(.5) drop-shadow(0 0 0 red); margin-left: 5px;" 
+                            {% else %} 
+                            style="top: 30%; filter: brightness(90%); margin-left: 5px;" 
+                            {% endif %}>
+                        <img src="{% static 'images/intestine.png' %}" width="43px" height="40px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_intestine %} 
+                            style="top: 35%; filter: opacity(.5) drop-shadow(0 0 0 red);" 
+                            {% else %} 
+                            style="top: 35%; filter: brightness(90%);" 
+                            {% endif %}>
+                        <img src="{% static 'images/left_kidney.png' %}" width="18px" height="23px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_kidneys %} 
+                            style="top: 45%; filter: opacity(.5) drop-shadow(0 0 0 red); margin-left: -12px;" 
+                            {% else %} 
+                            style="top: 45%; filter: brightness(90%); margin-left: -12px;" 
+                            {% endif %}>
+                        <img src="{% static 'images/right_kidney.png' %}" width="18px" height="23px"
+                            class="position-absolute start-50 translate-middle-x" alt="" 
+                            {% if ailment.affects_kidneys %} 
+                            style="top: 45%; filter: opacity(.5) drop-shadow(0 0 0 red); margin-left: 12px;" 
+                            {% else %} 
+                            style="top: 45%; filter: brightness(90%); margin-left: 12px;" 
+                            {% endif %}>
+                    </div>
+                </div>
+                <div id="carouselExampleControls{{ailment.id}}" class="carousel carousel-dark slide"
+                    data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% if ailment.affects_other %}
+                        <div class="carousel-item active">
+                            <div class="col-12 p-3">
+                                <span class="fw-semibold">Other Body Parts Affected:</span><br>
+                                <span>{{ailment.other}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="carousel-item {% if not ailment.affects_other %}active{% endif %}">
+                            <div class="col-12 mt-3 p-3 card border-0 overflow-auto" style="max-height: 17.3vh;">
+                                <h6>Symptoms</h6>
+                                <span>{{ailment.symptoms}}</span>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-12 mt-3 p-3 card border-0 overflow-auto" style="max-height: 17.3vh;">
+                                <h6>Prescription</h6>
+                                <span>{{ailment.prescription}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators position-static">
+                        <button type="button" data-bs-target="#carouselExampleControls{{ailment.id}}"
+                            data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleControls{{ailment.id}}"
+                            data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        {% if ailment.affects_other %}
+                        <button type="button" data-bs-target="#carouselExampleControls{{ailment.id}}"
+                            data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-md-6 col-lg-7">
+            <div class="card border-0 p-3 pt-0 position-relative"
+                style="box-shadow: var(--shadow); background: var(--card_bg_transparent); height: 75vh;">
+                <div class="sticky-top pt-3" style="background: #F3F3F5;">
+                    <button class="btn col-12 d-flex justify-content-between align-items-center shadow-sm border-0">
+                        <span>Search</span>
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <ul class="list-group overflow-auto mt-3" style="max-height: 70vh;">
+                    {% for ailment in ailments %}
+                    <a href="#ailment{{ailment.id}}"
+                        class="list-group-item ailments_list_items bg-transparent border-0 py-3 px-1 border-bottom text-dark">
+                        <span class="fw-semibold">{{ailment.name}}</span>
+                        <br><small>Danger Level:
+                            {% if ailment.danger_level == 'critical' %}
+                            <span class="fw-semibold" style="color: red;">Critical</span>
+                            {% elif ailment.danger_level == 'very_high' %}
+                            <span class="fw-semibold" style="color: rgb(255, 98, 0);">Very High</span>
+                            {% elif ailment.danger_level == 'high' %}
+                            <span class="fw-semibold" style="color: rgb(255, 157, 0);">High</span>
+                            {% elif ailment.danger_level == 'moderate' %}
+                            <span class="fw-semibold" style="color: rgb(255, 251, 0);">Moderate</span>
+                            {% elif ailment.danger_level == 'low' %}
+                            <span class="fw-semibold" style="color: rgb(149, 255, 0);">Low</span>
+                            {% elif ailment.danger_level == 'very_low' %}
+                            <span class="fw-semibold" style="color: rgb(4, 255, 0);">Very Low</span>
+                            {% endif %}
+                        </small>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .ailments::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .ailments_list_items span,
+    .ailments_list_items small {
+        pointer-events: none;
+    }
+</style>

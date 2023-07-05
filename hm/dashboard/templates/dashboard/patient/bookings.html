@@ -1,0 +1,143 @@
+{% load static %}
+
+<div class="main" id="bookings">
+    <div class="d-flex justify-content-between">
+        <h4>Your Appointments</h4>
+        <a href="#" class="btn text-primary me-2" role="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">New <i class="fas fa-plus"></i></a>
+    </div>
+    <div class="row mx-0 row-cols-1 g-3 mt-4">
+
+        {% if appointments %}
+
+        {% for appointment in appointments %}
+        <div class="col">
+            <div class="card col-12 border-0 p-3">
+                <div class="d-md-flex align-items-center justify-content-between">
+                    <div class="d-flex d-md-block px-0 px-md-3">
+                        <img src="{% static 'images/user_avatar1.png' %}" alt="" width="20px" height="20px"
+                            class="rounded-pill me-2"><br>
+                        <span class="fw-semibold">Dr. {{appointment.doctor.username}}</span>
+                    </div>
+
+                    <div class="my-3 my-md-0 px-0 px-md-3">
+                        <small style="color: var(--text_color);">Appointment Reason:</small><br>
+                        <span class="fw-semibold">{{appointment.reason}}</span>
+                    </div>
+
+                    <div class="d-flex overflow-hidden col" style="width: fit-content;">
+                        <div class="col-12 d-md-flex justify-content-between align-items-center"
+                            id="r{{appointment.pk}}">
+                            <div class="row row-cols-2 g-3 mx-0">
+                                <div style="width: fit-content;">
+                                    <small style="color: var(--text_color);">Date:</small><br>
+                                    <span class="fw-semibold">{{appointment.date}}</span>
+                                </div>
+                                <div style="width: fit-content;">
+                                    <small style="color: var(--text_color);">Time:</small><br>
+                                    <span class="fw-semibold">{{appointment.time}}</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4 mt-md-0" style="width: fit-content;">
+                                <a href="#reschedule{{appointment.pk}}" class="btn text-primary"
+                                    style="background: var(--card_bg);">Reschedule</a>
+                                <a href="tel:{{appointment.doctor.phone}}" class="btn"
+                                    style="background: var(--card_bg); color: var(--green_shade);"><i
+                                        class="fas fa-phone"></i></a>
+                            </div>
+                        </div>
+
+                        <form action="{% url 'reschedule' appointment.pk %}" method="post" class="col-12">
+                            {% csrf_token %}
+                            <div class="col d-md-flex justify-content-between align-items-center"
+                                id="reschedule{{appointment.pk}}">
+                                <div class="row row-cols-2 g-3 mx-0">
+                                    <div style="width: fit-content;">
+                                        <small style="color: var(--text_color);">Date:</small><br>
+                                        <span class="fw-semibold"><input type="date" name="edit_date"
+                                                class="border-0 bg-transparent" id=""
+                                                value="{{appointment.date.year}}-{{appointment.date.month}}-{{appointment.date.day}}"></span>
+                                    </div>
+                                    <div style="width: fit-content;">
+                                        <small style="color: var(--text_color);">Time:</small><br>
+                                        <span class="fw-semibold">
+                                            <input type="time" name="edit_time" class="border-0 bg-transparent" id=""
+                                                value="{{appointment.time.hour}}:{% if appointment.time.minute < 10 %}0{{appointment.time.minute}}{% else %}{{appointment.time.minute}}{% endif %}:00">
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-4 mt-md-0" style="width: fit-content;">
+                                    <a href="#r{{appointment.pk}}" class="btn text-danger"
+                                        style="background: var(--card_bg);">Cancel</a>
+                                    <button type="submit" class="btn text-primary"
+                                        style="background: var(--card_bg);">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
+
+        <p class="py-5 my-5 text-center">You have no appointments</p>
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+<!-- CREATE APPOINTMENT -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3" style="background: var(--body_bg);">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Create Appointment</h1>
+                <button type="button" class="btn text-dark" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fa-solid fa-xmark fs-5"></i></button>
+            </div>
+            <div class="modal-body border-0 text-dark">
+                <form action="{% url 'create_appointment' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Type in the reason for the appointment</label>
+                        <input type="text" name="reason" id="" class="form-control text-dark mt-2 border-0"
+                            style="background: var(--card_bg_inclined); box-shadow: var(--shadow);" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="">Select one of our qualified doctors</label>
+                        <select name="doctor" id="" class="form-select text-dark mt-2 border-0"
+                            style="background: var(--card_bg_inclined); box-shadow: var(--shadow);">
+
+                            {% for doctor in doctors %}
+                            <option value="{{doctor.pk}}" style="color: var(--text_color);">{{doctor.username}}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="">Set preferred date</label>
+                        <input type="date" name="date" id="" class="form-control text-dark mt-2 border-0"
+                            style="background: var(--card_bg_inclined); box-shadow: var(--shadow);" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="">Set preferred time</label>
+                        <input type="time" name="time" id="" class="form-control text-dark mt-2 border-0"
+                            style="background: var(--card_bg_inclined); box-shadow: var(--shadow);" required>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn text-dark ms-auto mt-3 px-5" style="background: var(--card_bg_inclined); box-shadow: var(--shadow);">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

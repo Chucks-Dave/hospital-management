@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Sign Up
+{% endblock title %}
+
+{% block main %}
+
+<div class="form-body" style="background-color: var(--body_bg)">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Sign-in</h3>
+          <p>Fill in the data below.</p>
+          <form method="POST">
+            {%csrf_token%}
+            <!-- <label for="username">Username</label> -->
+            <input type="text" placeholder="Username" name="username" id="username">
+
+            <!-- <label for="password">Password</label> -->
+            <input type="password" placeholder="Password" name="password1" id="password">
+
+
+            <div class="form-button mt-3">
+              <button id="submit" type="submit" class="btn w-25 text-start d-flex align-items-center" style="background: var(--card_bg_transparent);">
+                Login
+                <i class="fa-solid fa-chevron-right ms-auto"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

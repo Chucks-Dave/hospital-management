@@ -1,0 +1,226 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --body_bg: linear-gradient(#F3F4F6, #EFF0F2);
+    --card_bg: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4))
+        /*#f5f6f881*/
+    ;
+    --card_bg_inclined: linear-gradient(to bottom right, rgba(255, 255, 255, .1)0% 30%, rgba(255, 255, 255, .2) 40% 60%, rgba(255, 255, 255, .1) 70% 100%);
+    --card_bg_transparent: rgba(255, 255, 255, .1);
+    --red_shade: #DBA8A7;
+    --blue_shade: #CBDBFA;
+    --green_shade: #9de56d;
+    --purple_shade: #E3D6F2;
+    --shadow: 0 5px 10px #E5E5E5;
+    --text_color: #505666;
+}
+
+body {
+    background: var(--body_bg);
+    min-height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.sidenav_wrapper{
+    width: 7vw;
+}
+
+.sidenav{
+    background: var(--card_bg);
+    box-shadow: var(--shadow);
+    border-radius: 1vw;
+    height: calc(100vh - 2rem);
+}
+
+.main{
+    height: calc(100vh - 4rem);
+    overflow: auto;
+}
+.main::-webkit-scrollbar, .card ul::-webkit-scrollbar, .card::-webkit-scrollbar{
+    width: 4px;
+}
+.main::-webkit-scrollbar-thumb, .card ul::-webkit-scrollbar-thumb, .card::-webkit-scrollbar-thumb{
+    background: #999;
+}
+
+.card{
+    background: var(--card_bg);
+}
+
+.profile_cont .card{
+    height: calc(100vh - 4rem);
+}
+
+@media screen and (max-width: 991px) {
+    .sidenav_wrapper{
+        width: 100vw;
+    }
+    .sidenav img{
+        max-width: 40px;
+    }
+    .sidenav{
+        height: fit-content;
+    }
+    .sidenav a{
+        position: static !important;
+    }
+    .dashboard_body{
+        height: calc(100vh - 9rem) !important;
+        overflow: auto;
+    }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: capitalize;
+}
+
+/* register styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+
+
+
+.form-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+}
+
+.form-holder .form-content {
+    position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.form-content .form-items {
+    box-shadow: var(--shadow);
+    background: var(--card_bg_inclined);
+    padding: 40px;
+    display: inline-block;
+    width: 100%;
+    min-width: 540px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: left;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.form-content h3 {
+    color: var(--text_color);
+    text-align: left;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-content h3.form-title {
+    margin-bottom: 30px;
+}
+
+.form-content p {
+    color: var(--text_color);
+    text-align: left;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+
+
+.form-content label, .was-validated .form-check-input:invalid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label{
+    color: var(--text_color);
+}
+
+.form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select {
+    width: 100%;
+    padding: 9px;
+    text-align: left;
+    border: 0;
+    outline: 0;
+    border-radius: 6px;
+    background: var(--card_bg);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text_color);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+
+.btn-primary{
+    background-color: #6C757D;
+    outline: none;
+    border: 0px;
+     box-shadow: none;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
+    background-color: #495056;
+    outline: none !important;
+    border: none !important;
+     box-shadow: none;
+}
+
+.form-content textarea {
+    position: static !important;
+    width: 100%;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-align: left;
+    background-color: #fff;
+    border: 0;
+    font-size: 15px;
+    font-weight: 300;
+    color: #8D8D8D;
+    outline: none;
+    resize: none;
+    height: 120px;
+    -webkit-transition: none;
+    transition: none;
+    margin-bottom: 14px;
+}
+
+.form-content textarea:hover, .form-content textarea:focus {
+    border: 0;
+    background-color: #ebeff8;
+    color: #8D8D8D;
+}
+
+.mv-up{
+    margin-top: -9px !important;
+    margin-bottom: 8px !important;
+}
+
+.invalid-feedback{
+    color: #ff606e;
+}
+
+.valid-feedback{
+   color: #2acc80;
+}

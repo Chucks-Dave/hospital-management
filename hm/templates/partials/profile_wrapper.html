@@ -1,0 +1,52 @@
+<div class="card border-0 col-12 p-5 d-none d-lg-block" style="box-shadow: var(--shadow);">
+    <div class="col-12 text-center mb-4">
+        <div class="mx-auto rounded-pill bg-secondary p-4 text-center user_initials mb-2" id="user_initials">
+            <span class="fs-3 text-white"
+                style="text-transform: uppercase;">{{request.user.username|make_list|slice:'0:2'|join:''}}</span>
+        </div>
+        <span>{{request.user.username}}</span>
+    </div>
+
+    <div class="col-12 detail_holder rounded p-3">Email: {{request.user.email}}</div>
+    <div class="col-12 detail_holder rounded p-3 mt-3">Phone Number: {{request.user.phone}}</div>
+
+    <div class="row row-cols-3 g-3 mt-4">
+        <div class="col">
+            <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                <i class="fa-solid fa-weight-scale fs-3" style="color: var(--red_shade);"></i><br>
+                <small><small class="text-secondary">weight</small></small><br>
+                <small>0.00kg</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                <i class="fa-solid fa-up-down fs-3" style="color: var(--blue_shade);"></i><br>
+                <small><small class="text-secondary">height</small></small><br>
+                <small>0'0"</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="user_property text-center mx-auto p-3 rounded" style="background: var(--card_bg);">
+                <i class="fa-solid fa-gauge fs-3" style="color: var(--purple_shade);"></i><br>
+                <small><small class="text-secondary">BP</small></small><br>
+                <small>0.00</small>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Edit Profile Button -->
+    <a href="#" class="btn col-12 mt-4"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+</div>
+
+
+<style>
+    .detail_holder{
+        background: var(--card_bg);
+    }
+</style>
+
+<script>
+    $("#user_initials").width($("#user_initials").height())
+    $("#user_initials2").width($("#user_initials2").height())
+</script>

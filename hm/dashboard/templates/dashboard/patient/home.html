@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{request.user.username}} | Dashboard
+{% endblock title %}
+
+
+{% block main %}
+<div class="row g-3 p-3">
+    <div class="sidenav_wrapper">
+        {% include "partials/patient_side_nav.html" %}
+    </div>
+    <div class="col-12 col-lg row g-3">
+        <div class="col-12 col-md dashboard_body" style="max-height: calc(100vh - 4rem); overflow: hidden;">
+            {% include "dashboard/patient/dashboard.html" %}
+            {% include "dashboard/patient/bookings.html" %}
+            {% include "dashboard/patient/explore.html" %}
+        </div>
+        <div class="col-4 profile_cont d-none d-lg-block">
+            {% include "partials/profile_wrapper.html" %}
+        </div>
+    </div>
+</div>
+{% endblock main %}
